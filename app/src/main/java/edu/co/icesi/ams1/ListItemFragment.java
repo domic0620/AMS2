@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class ListItemFragment extends Fragment{
 
     //State
-    ArrayList<String> tareas;
 
     //UI
     private TextView taskList;
@@ -22,7 +21,6 @@ public class ListItemFragment extends Fragment{
 
     public ListItemFragment() {
         // Required empty public constructor
-        tareas = new ArrayList<>();
     }
 
     public static ListItemFragment newInstance() {
@@ -38,19 +36,7 @@ public class ListItemFragment extends Fragment{
         // Inflate the layout for this fragment
         View root =  inflater.inflate(R.layout.fragment_list_item, container, false);
         taskList = root.findViewById(R.id.taskList);
-
-
-        //Recuperar el estado
-        taskList.setText("");
-        for(String task : tareas){
-            taskList.append(task+"\n");
-        }
-
         return root;
     }
 
-    @Override
-    public void onNewTask(String task) {
-        tareas.add(task);
-    }
 }
