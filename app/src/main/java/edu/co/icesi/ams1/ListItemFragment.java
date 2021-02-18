@@ -7,12 +7,22 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-public class ListItemFragment extends Fragment {
+import java.util.ArrayList;
+
+public class ListItemFragment extends Fragment implements NewItemFragment.OnNewTaskListener{
+
+    //State
+    ArrayList<String> tareas;
+
+    //UI
+    private TextView taskList;
 
 
     public ListItemFragment() {
         // Required empty public constructor
+        tareas = new ArrayList<>();
     }
 
     public static ListItemFragment newInstance() {
@@ -26,6 +36,21 @@ public class ListItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_item, container, false);
+        View root =  inflater.inflate(R.layout.fragment_list_item, container, false);
+        taskList = root.findViewById(R.id.taskList);
+
+
+        //Recuperar el estado
+        taskList.setText("");
+        for(String task : tareas){
+            taskList.append(task+"\n");
+        }
+
+        return root;
+    }
+
+    @Override
+    public void onNewTask(String task) {
+        tareas.add(task);
     }
 }

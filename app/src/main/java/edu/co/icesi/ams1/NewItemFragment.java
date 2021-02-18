@@ -7,13 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NewItemFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class NewItemFragment extends Fragment {
+
+public class NewItemFragment extends Fragment implements View.OnClickListener {
+
+    //UI
+    private EditText newTaskET;
+    private Button addBtn;
 
 
     public NewItemFragment() {
@@ -31,6 +33,23 @@ public class NewItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_item, container, false);
+        View root = inflater.inflate(R.layout.fragment_new_item, container, false);
+        newTaskET = root.findViewById(R.id.newTaskET);
+        addBtn = root.findViewById(R.id.addBtn);
+
+
+        addBtn.setOnClickListener(this);
+
+        return root;
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.addBtn:
+
+                break;
+        }
+    }
+
 }
