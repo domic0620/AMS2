@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ListItemFragment extends Fragment implements NewItemFragment.OnNewTaskListener{
+public class ListItemFragment extends Fragment{
 
     //State
     ArrayList<String> tareas;
