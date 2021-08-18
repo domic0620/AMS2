@@ -1,5 +1,8 @@
 package edu.co.icesi.ams1;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText loginPassword;
     private Button loginIniciarBtn;
 
-    public static final int CODE = 16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +37,35 @@ public class MainActivity extends AppCompatActivity {
         loginPassword = findViewById(R.id.loginPassword);
         loginIniciarBtn = findViewById(R.id.loginIniciarBtn);
 
+
+
+        ActivityResultLauncher<Intent> launcher = registerForActivityResult(new StartActivityForResult(), this::onResult);
+
+
         loginIniciarBtn.setOnClickListener(
                 (v) -> {
                     //Aqui va mi accion
                     String username = loginUsername.getText().toString();
                     String password = loginPassword.getText().toString();
-                    Toast.makeText(this, username+":"+password, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(this, username+":"+password, Toast.LENGTH_LONG).show();
+                    //INTENT
 
                     Intent intent = new Intent(this, ProfileActivity.class);
                     intent.putExtra("username",username);
 
+                    launcher.launch(intent);
 
-                    startActivityForResult(intent, CODE);
                 }
         );
+    }
 
+    private void onResult(ActivityResult result) {
+        if(result.getResultCode() == RESULT_CANCELED){
+            Toast.makeText(this, "El username no está bien formateado", Toast.LENGTH_LONG).show();
+        }else if(result.getResultCode() == RESULT_OK){
+            String newuser = result.getData().getExtras().getString("newuser");
+            loginUsername.setText(newuser);
+        }
     }
 
     @Override
@@ -60,5 +76,6 @@ public class MainActivity extends AppCompatActivity {
             String username = data.getExtras().getString("username");
             loginUsername.setText(username);
         }
+
     }
 }
