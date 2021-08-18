@@ -3,7 +3,6 @@ package edu.co.icesi.ams1;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static android.icu.text.DateTimePatternGenerator.PatternInfo.OK;
 
 public class MainActivity extends AppCompatActivity {
 
