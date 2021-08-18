@@ -28,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
         backBtn.setOnClickListener(
                 v->{
                     Intent data = new Intent();
-                    data.putExtra("username",newUsername.getText().toString());
+                    data.putExtra("newuser",newUsername.getText().toString());
                     setResult(RESULT_OK, data);
                     finish();
                 }

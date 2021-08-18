@@ -68,14 +68,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == OK && resultCode == RESULT_OK){
-            String username = data.getExtras().getString("username");
-            loginUsername.setText(username);
-        }
-
-    }
 }
